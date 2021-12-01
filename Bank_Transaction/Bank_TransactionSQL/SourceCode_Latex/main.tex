@@ -1,0 +1,1332 @@
+\documentclass[12pt,a4paper]{article}
+%\usepackage[utf8]{vntex}
+\usepackage{enumerate}
+\usepackage{minted}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{color}
+\usepackage{enumitem}
+\usemintedstyle{manni}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{bookmark}
+\usepackage{comment}
+\usepackage{pifont}
+\usepackage{lastpage}
+\usepackage{color}
+\usepackage{natbib}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{tikz}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{listings}
+\usepackage{anyfontsize}
+\usepackage{lastpage}
+\usepackage{indentfirst}
+\usepackage{changepage}
+
+\usepackage[utf8]{inputenc}
+% change the font
+\usepackage[T1]{fontenc}
+\usepackage{xcolor}
+
+
+% code segment
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{minted} % needs --shell-escape flag
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Bank_Transaction},
+    pdfpagemode=FullScreen,
+}
+
+%noindent
+\setlength{\parindent}{10pt}
+
+\usetikzlibrary{calc}
+\newcommand\HRule{\rule{12cm}{1pt}}
+
+\pagestyle{fancy}
+\fancyhead{} % clear all header fields
+\fancyhead[L]{
+	\color{blue}
+	\begin{tabular}{rl}
+		\begin{picture}(25,15)(0,0)
+		\put(0,-8){\includegraphics[width=8mm, height=8mm]{hcmut.png}}
+		\end{picture}
+		\begin{tabular}{l}
+			\textbf{\bf \ttfamily Ho Chi Minh University of Technology}\\
+			\textbf{\bf \ttfamily Faculty of Computer Science \& Engineering}
+		\end{tabular}
+	\end{tabular}
+}
+\fancyhead[R]{
+	\begin{tabular}{l}
+		\tiny \bf \\
+		\tiny \bf
+	\end{tabular}
+}
+\fancyfoot{} % clear all footer fields
+\fancyfoot[L]{\scriptsize \ttfamily Database Report}
+\fancyfoot[R]{\scriptsize \ttfamily Page {\thepage}/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0.3pt}
+
+
+\begin{document}
+\begin{titlepage}
+  \begin{tikzpicture}[remember picture, overlay]
+    \draw[line width = 2pt] ($(current page.north west) + (1in,-1in)$) rectangle ($(current page.south east) + (-1in,1in)$);
+  \end{tikzpicture}
+
+  \begin{center}
+
+    % Upper part of the page
+    \textbf{\fontsize{12pt}{1pt}\selectfont HO CHI MINH CITY UNIVERSITY OF TECHNOLOGY}\\[0.5cm]
+    {\fontsize{13pt}{1pt}\selectfont Faculty of Computer Science \& Engineering}\\[0.5cm]
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=1.7in,height=1.7in]{hcmut.png}
+    \end{figure}
+
+    % Title
+    \HRule\\[0.5cm]
+    { \textbf{\fontsize{25pt}{1pt}\selectfont Bank Transaction }}\\[0.6 cm]
+    { \textbf{\fontsize{25pt}{1pt}\selectfont Database System}}\\[0.6 cm]
+    { \textbf{\fontsize{25pt}{1pt}\selectfont Assignment 1+2 Report}}\\[0.4cm]
+
+    \HRule\\[0.8cm]
+    
+\vspace{0.5cm}
+
+\begin{table}[h]
+\begin{tabular}{rrl}
+\hspace{2.8 cm} & \textbf{Instructor}: & Mr. Tran Minh Quang\\
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\begin{tabular}{rrl}
+\hspace{3.8 cm} & \textit{\textbf{Group:}} & \textit{\textbf{3 - CC07}}\\
+\hspace{3.8 cm} & \textit{\textbf{Students:}} & \textit{Phan Tuan Khai – 1952780}\\
+\hspace{3.8 cm} & & \textit{Cao Hoang Kiet - 2053165}\\
+\hspace{3.8 cm} & & \textit{Cao Tuan Kiet - 2053166}\\
+\end{tabular}
+\end{table}
+\vspace{1cm}
+
+\begin{center}
+{\footnotesize Ho Chi Minh City, November 2021}
+\end{center}
+    \vfill
+    % Bottom of the page
+    \vspace{2cm}
+    {\large} %{\large \today}
+  \end{center}
+\end{titlepage}
+
+\bigskip
+
+\newpage
+\hspace{2 cm}
+\tableofcontents
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+
+\section{Member list \& Workload}
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{No.} & \textbf{Fullname} & \textbf{Student ID} &  \textbf{Percentage of work}\\
+\hline 
+%%%%%Student 1%%%%%%%%%%
+{1} & {Phan Tuan Khai} & {1952780} &  {100\%}\\
+\hline 
+%%%%%Student 2%%%%%%%%%%%
+{2} & {Cao Hoang Kiet} & {2053165} & {100\%}\\
+\hline
+%%%%%Student 3%%%%%%%%%%% 
+{3} & {Cao Tuan Kiet} & {2053166} &  {100\%}\\
+\hline
+\end{tabular}
+\end{center}
+
+\section {Instruction}
+With most of the world operating remotely, online and offline banking transactions may
+create a huge help to our life and businesses using web services and mobile apps for online banking transactions as well as banking cards for transferring money from ATM to our hand\\\\
+\indent In addition to being able to bank at any time, from anywhere, there are many advantages
+to banking online.
+
+\begin{itemize}
+    \item Accessibility: Internet banking is available at any time and it provides 24 hours access instead of visiting banks only during working hours.
+    \item Customer Service: the customers do not have to stand in queues to carry out certain bank transactions.
+    \item Pay bills online: This might be one of the top advantages of online banking because you don’t have to take time out of your day to go to the bank. You can simply log into your account and pay your bill online right away.
+    \item Transfer money: You may need to do a rapid money transfer to a client or vendor, or you may need to transfer money from one account to another.
+\end{itemize}
+
+\indent However, the most important problem that we must encounter is security. Valuable information is always prone to hacks, but online banking tries for solving e-security threats.\\\\
+\indent In contrast, offline banking transaction is also the most famous transaction service in the world about approximately a few decades ago. If we compare its transaction with the first one(online transaction), we will see there are a lot of disadvantages when we use it in the technology era 4.0 and 19-covid pandemic which requires the use of the Internet everywhere. However, Traditional banking does not encounter e-security threats and this is a good benefit when trading offline transactions.\\\\
+\indent From the reason above, thus we choose to implement and design DB banking transactions in order to understand more about the management of banking transactions.\\\\
+\indent Our report will include a requirement description for bank transaction database system, EER Diagram of our design, relational database design and implementation of our code into the Database management system (DBMS).
+
+\section{Requirement description for Bank Transaction Database System}
+\subsection{Brief Introduction}
+\indent We choose reference most from OCB. From OCB, we get information about Account, Card. About Customer and Staff attributes, we take typical information about a human.
+\subsection{Requirement description}
+\indent BANK\_TRANSACTION database system in which every bank transaction, which are made bank account and bank card, is recorded. The data requirements for this system are summarized as follows:\\\\
+\indent Bank customers are identified by their customer's ID. The bank also stores customers' name, age, phone, email, address. A customer can own multiple accounts and several bank cards.\\\\
+\indent A banking account has unique account number, create day and balance. The account balance will depends on amount of money of its relating transaction (include AccountTransaction and its CardTransaction). The account is owned by only one customer. Moreover, a bank account may have several account transactions. Banking accounts must be saving account or checking account:
+\begin{itemize}
+    \item Saving account has interest rate but is not involved in bank card.
+    \item Checking account may involve several bank cards.
+\end{itemize}
+
+\indent Bank Card has a unique card number, start date, expiry date and each card must associate with a checking account. A bank card also has card transactions. Every bank card is divided into 2 types: Credit card and Debit card.
+\begin{itemize}
+    \item The credit card has a security code, interest rate and withdrawn amount of money, which will be the total amount of money withdrawn since the last time it is paid.
+    \item The debit card has an PIN Code and account balance, which equals the balance of the associated account.
+\end{itemize}
+
+\indent Every account transaction must involve a banking account. A transaction has an ID Number, which is unique in the scope of the account. The transaction also includes type, the associated amount of money, the date when carrying out the transaction, destination of the transaction. Account transactions will be offline or online:
+\begin{itemize}
+    \item The offline transaction has the location and must be involved with bank staff.
+    \item The online transaction has the name of the app used to carry out the transaction.
+\end{itemize}
+
+\indent The card transaction must involve a bank card. A transaction has an ID Number that is unique in the scope of the card. The transaction also includes type, the associated amount of money, the date when carrying out the transaction, payment machine, destination of the transaction.\\
+
+\indent Bank staff is identified by their unique staff ID. Staffs also have their name, age, email, telephone number, address, start working date, and working location. A bank staff may be responsible for many offline transaction or not.
+
+\section{EER Diagram for our Bank Transaction Database System}
+\subsection{About the tool we use}
+\indent We draw EER Diagram using draw.io tool. Draw.io is an open source technology stack for building diagramming applications, and the world’s most widely used browser-based end-user diagramming application. It’s lets you create a wide range of diagrams, from simple tree and flow diagrams, to highly technical network, rack and electrical diagrams by using a wide variety of shapes, icons, connector and templates to help you get started quickly. \\\\
+\indent The tool also has a desktop application so that it is always available for us to work with. Moreover, the online version gives us online workspace for better team-work. Draw.io provides us everything to draw EER Diagram from EER notation to draw-supporting functions. Finally, the tool is very popular for us to learn nice tips and search for solutions, hence improvement in our productivity.
+\subsection{Our Diagram}
+\indent We submited drawio file for better resolution of our diagram: BankTransaction.drawio
+\begin{figure}[H]
+      \centering
+      \includegraphics[scale = 0.25]{Picture/BankTransaction.drawio.png}
+      \caption{EER Diagram for Bank Transaction database system}
+\end{figure}
+\subsection{Explanation}
+\indent In this part, we will explain more about relationships between entities and derived attribute in some entity.\\\\
+\indent In the Bank Account entity, we have Balance as an derived attribute since Balance must be update every time a transaction related to the account are carried out\\\\
+\indent Own\_Account relationship between Customer and Bank Account: because each Bank Account has to be own by one customer, we have total participation here. In the opposite side, the customer may have many bank accounts or nothing.\\\\
+\indent Own\_Card relationship between Customer and Bank Account: similar to the Own\_Account relationship, each Bank Card has to be own by one customer so we have total participation here. In the opposite side, the customer may have many bank cards or they may not want to have one.\\\\
+\indent We have 2 identify relationship Carry\_out between Bank Account and Account Transaction as well as Bank Card and Card Transaction. We have 2 different entity for transaction here due its different attributes. Here, Card can only work with machine but Account can involve in many transactions except for payment machine which is only for cards.\\\\
+\indent And about the Responsible relationship between Offline Account Transaction and Bank Staff. The offline transaction happens when customer working with bank staff at the bank office. Therefore, with every offline transaction, there are always a bank staff who responsible for that transaction. Moreover, the online transaction will be carried out by the system so there will be no bank staff involve.\\\\
+\indent The reason why we do not consider customer and employee as a sub-class of a superclass, for example, People: we want so separate key of customer and staff. We think we cannot have a superclass with no key and we want to have different type and format for key of customer and staff. 
+\indent About querying records of an account: Here we have 2 entity considered as records of an account is CardTransaction and AccountTransaction. We may create many views to customer when they want to query, for example, their account's transaction history. When customer want to see all history transaction, we can look for all account information and all card transaction (a account may have many card) and the No. of may be modified when display in UI. Additionally, this design will be more convenient when customer only want to see transaction of their particular card.
+
+
+\section{Logical design using relational database model for our database system}
+\subsection{About the tool we use}
+\indent We choose MySQL Workbench as a tool for designing relational Database model and implementing our Database into a DBMS.\\
+\indent MySQL Workbench is a unified visual tool for database architects, developers, and DBAs. MySQL Workbench provides data modeling, SQL development, and comprehensive administration tools for server configuration, user administration, backup, and much more. MySQL Workbench is available on Windows, Linux and Mac OS X.\\\\
+\indent The reason for our choice is that MySQL Workbench provides us the following benefits:
+\begin{itemize}
+    \item The world’s most popular open-source database.
+    \item Has a community edition.
+    \item Support cross-platform (Windows, Linux, and MAC OS versions).
+    \item Wide learning resources.
+    \item Support ER/EER Diagram.
+    \item Allow reverse and forward engineering.
+    \item About visual database design.
+    \item Simplifies database design and maintenance.
+    \item Automate time-consuming and error-prone tasks.
+    \item Enable model-driven database design.
+    \item Changes management:
+    \begin{itemize}
+    \item MySQL Workbench helps DBAs and developers manage the complex and difficult database change processes involving different versions of database schemas.
+    \item Schema Synchronization and Comparison utilities allow DBA can compare two databases or a database and a model visually to see the differences.  
+    \end{itemize}
+\end{itemize}
+\subsection{Physical Design}
+\indent For preparation, if the data types have been declared clearly, we can let attributes store data. In the following sentences, we will shows which kind of data types is available for each group of attributes.
+\begin{itemize}
+    \item The primary key (AccNum or CardNum) in most of our tables ( should use CHAR(12) type. We choose CHAR instead of VARCHAR because AccNum and CardNum always have 12 character hence same storage size but faster query time(CHAR query time is faster than VARCHAR due to its fixed-size feature). The primary key of OffAccTranction, OnlAccTranction and CradTransaction using INT type since we expect it to be count up for every new tuples.
+    \item For a name of a customer or a staff as well as an email address, we use VARCHAR datatype with a the length of 45 characters since Name and Email length is flexible and 45 characters is sufficient.
+    \item Because of the sequences of 10 digits for the telephone number, the good option for this attribute is CHAR(10).
+    \item With regard to address or work location for customers and staff or even destination for a transaction, so we need the length VARCHAR of 100 to store them.
+    \item In term of balance, withdraw , money and age can use INT data type for counting. And date transaction, this attribute will use DATETIME type, which will also store to time when transaction are carried out. While the startDate of Staff, Account and Card are DATE because store time is unnecessary.
+\end{itemize}
+
+\subsection{Our relational DB model}
+\indent We draw the relational database base on EER diagram in the previous section For better resolution you can download the file in our submisstion with the filename: Relational\_BankTransaction.mwb.
+
+\begin{figure}[H]
+      \centering
+      \includegraphics[width=5.5in,height=7in]{Picture/Relational_BankTransaction.png}
+      \caption{Relational database design for Bank Transaction database system}
+\end{figure}
+
+
+
+
+\section{Implement the DBs into a particular DBMS}
+\subsection{Our Code}
+\indent Our code file BankTransaction.sql is submitted in the drive folder.
+
+\begin{minted}[ bgcolor=yellow!10]{mysql}
+create database if not exists bank_transaction;
+use bank_transaction;
+ 
+create table Customer 
+    (C_ID   int             not null,
+    CName   varchar(45)     not null,
+    Age     int,
+    Email   varchar(45),
+    Phone   char(10)        not null,
+    Address varchar(100)    not null,
+	primary key (C_ID));
+
+\end{minted}
+
+\begin{minted}[bgcolor=yellow!10]{mysql}
+create table BankStaff
+    (S_ID       varchar(7)      not null,
+    SName       varchar(45)     not null,
+    Age         int,
+    Email       varchar(45),
+    Phone       char(10)        not null,
+    Address     varchar(100)    not null,
+    StartDate   date,
+    WLoc        varchar(100)    not null,
+	primary key (S_ID));
+\end{minted}
+
+\begin{minted}[bgcolor=yellow!10]{mysql}
+create table BankAccount
+    (AccNum         char(12)        not null,
+    CreateDate      date            not null,
+    InterestRate    int,
+    Balance         int             not null,
+    AccType         varchar(1)      not null,
+    C_ID            int             not null,
+	primary key (AccNum),
+    foreign key (C_ID) references Customer(C_ID)
+		on delete cascade on update cascade);
+\end{minted}
+
+\begin{minted}[bgcolor=yellow!10]{mysql}
+
+create table BankCard
+    (CardNum    char(12)     not null,
+    StartDate   date         not null,
+    ExpDate     date         not null,
+    AccNum      char(12)     not null,
+    C_ID        int          not null,
+    primary key (CardNum),
+    foreign key (C_ID) references Customer(C_ID) 
+       on delete cascade on update cascade,
+    foreign key (AccNum) references BankAccount(AccNum) 
+       on delete cascade on update cascade);
+
+\end{minted}
+
+
+
+\begin{minted}[bgcolor=yellow!10]{mysql}
+create table CreditCard
+    (CardNum                char(12)        not null,
+     WithdrawnAmount        int             default 0,
+     SecCode                char(3)         not null,
+     InterestRate           int             not null,
+     primary key (CardNum),
+     foreign key (CardNum) references BankCard(CardNum) 
+        on delete cascade on update cascade);
+
+\end{minted}
+
+
+\begin{minted}[bgcolor=yellow!10]{mysql}
+create table DebitCard
+    (CardNum    char(12)        not null,
+    Balance     int             not null,
+    PINCode     char(4)         not null,
+    primary key (CardNum),
+    foreign key (CardNum) references BankCard(CardNum) 
+       on delete cascade on update cascade);
+\end{minted}
+
+\begin{minted}[bgcolor=yellow!10]{mysql}
+create table CardTransaction
+    (T_No               int             not null,
+     Money              int             not null,
+     Dest               char(12),
+     T_Date             datetime        not null,
+     PaymentMachine     varchar(45)     not null,
+     CardNum            char(12)        not null,
+     TrType             varchar(2)      not null,
+     primary key (CardNum,T_No),
+     foreign key (CardNum) references BankCard(CardNum) 
+        on delete cascade on update cascade);
+\end{minted}
+
+\begin{minted}[bgcolor=yellow!10]{mysql}
+create table OnlAccTransaction
+    (T_No       int             not null,
+    Money       int             not null,
+    Dest        char(12),
+    T_Date      datetime        not null,
+    App         varchar(45)     not null,
+    AccNum      char(12)        not null,
+    TrType      varchar(2)      not null,
+    primary key (AccNum,T_No),
+    foreign key (AccNum) references BankAccount(AccNum) 
+       on delete cascade on update cascade);
+\end{minted}
+
+
+\begin{minted}[ bgcolor=yellow!10]{mysql}
+create table OffAccTransaction
+    (T_No           int             not null,
+     Money          int             not null,
+     Dest           var(12),
+     T_Date         datetime        not null,
+     T_Loc          varchar(45)     not null,
+     AccNum         char(12)        not null,
+     S_ID           varchar(7)      not null,
+     TrType         varchar(2)      not null,
+     primary key (AccNum,T_No),
+     foreign key (AccNum) references BankAccount(AccNum) 
+        on delete  cascade on update cascade,
+     foreign key (S_ID) references BankStaff(S_ID) 
+        on delete cascade on update cascade);
+
+\end{minted}
+\newpage
+\subsection{Result}
+\subsubsection{We successfully run our code on MySQL Workbench} 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=5.5in,height=1.5in]{Picture/result1.png}
+    \caption{Execute successfully from MySQL Workbench.}
+\end{figure}
+\subsubsection{The database created from our code} 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=3.5in,height=4.5in]{Picture/result2.png}
+    \caption{Our database when creating successfully from the code above.}
+\end{figure}
+
+
+
+\section{Conclusion for assignment 1}
+\indent In our report, we have written requirement description for bank transaction database. The requirement description is referenced from various sources from different banks but we take most information from OCB, which is the bank incorporating with our university.\\\\
+\indent In this assignment, we use drawio tool to draw EER diagram for our database design. The drawio tool provides us efficient features to draw a complete EER diagram. About our relational database design and implementation of our database into DBMS, we choose MySQL Workbench tool to work with. MySQL Workbench provides us many useful features for design relational database. Moreover, when we draw a complete relational database we can use forward engineering to create MySQL script, which will be very useful for us in the future. However, we manually write the SQL script without using the forward engineering feature to create our SQL script. Writing sql script manually help us improve our skill on mySQL.\\\\
+\indent In conclusion, after finished the first assignment, we are more familiar with mySQL workbench. We also gain more knowledge about bank transaction and know how to implement a transaction database system with basic information. In next assignment, we may optimize the database system using normalization. We may discuss more about security for the system and develop an application on top of the designed DB system.
+
+\newpage
+\section{Complete implementation of the DB to DBMS}
+In this section, we will insert initial data to the database and show you the result. The data inserted will be used for query and demonstrating with triggers and procedures.
+
+\subsection{Customer Relation:}
+\begin{minted}[ bgcolor=yellow!10]{mysql}
+insert into Customer values (100000, 'Keigh', 23,
+'Keigh@gmail.com', '0923451131', 
+'731 Fondren, Houston,TX');
+insert into Customer values (100001, 'David', 25,
+'David@gmail.com', '0922454331', 
+'638 Voss, Houston,TX');
+insert into Customer values (100002, 'Michael', 30,
+'Michael@gmail.com', '0928743331', 
+'975 Fire Oak, Humble,TX');
+insert into Customer values (100003, 'Kiet', 20, 
+'kiet.cao@hcmut.edu.com', '0928373738', 
+'90 Ly Thuong Kiet, District 10, Ho Chi Minh');
+insert into Customer values (100004, 'Hieu', 25, 
+'Hieuhieu@outlook.com', '0909344355', 
+'120 Ly Thuong Kiet, District 10, Ho Chi Minh');
+select * from Customer;
+\end{minted}
+
+\textbf{Result:}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=5.5in,height=1.5in]{Picture/CustomerData.png}
+    \caption{Customer Data.}
+\end{figure}
+
+\subsection{BankStaff Relation:}
+\begin{minted}[ bgcolor=yellow!10]{mysql}
+insert into BankStaff values ('200000', 'Wallace', 43,
+'Wallace@gmail.com', '0987453621', '5631 Rice, Houston, TX',
+'1978-07-19', 'John Daly Law, LLC');
+insert into BankStaff values ('200001', 'Jennifer', 26,
+'Jennifer@gmail.com', '0988573621', '3321Castle, Spring, TX',
+'1995-08-19', 'Scranton Whitepages');
+insert into BankStaff values ('200002', 'Zelaya', 27,
+'Zelaya@gmail.com', '0964733621', '56 Rice, Spring, CS',
+'1994-09-21', 'Scranton Whitepages');
+select * from BankStaff;
+\end{minted}
+
+\textbf{Result:}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=5.5in,height=1in]{Picture/BankStaffData.png}
+    \caption{BankStaff Data.}
+\end{figure}
+
+\subsection{BankAccount Relation:}
+\begin{minted}[ bgcolor=yellow!10]{mysql}
+insert into BankAccount values ('001221051555', '2006-05-21', null, 
+2900000, 'C', 100000), 
+('000820005493', '2012-05-26', null, 2600000, 'C', 100001), 
+('001211226765', '2011-04-26', null, 4400000, 'C', 100002),
+('001211226777', '2012-04-22', 6, 0, 'S', 100002),
+('001211226606', '2012-05-20', null, 0, 'C', 100003),
+('004411221212', '2015-06-20', null, 10600000, 'C', 100004);
+select * from BankAccount;
+\end{minted}
+
+\textbf{Result:}
+\begin{figure}[H]
+    \centering
+    \includegraphics[]{Picture/BankAccountData.png}
+    \caption{BankAccount Data.}
+\end{figure}
+
+\subsection{BankCard Relation:}
+\begin{minted}[ bgcolor=yellow!10]{mysql}
+insert into BankCard values('037828224631', '2006-06-21',
+'2040-05-24', '001221051555', 100000), 
+('037144963539', '2012-06-26', '2045-05-26','000820005493', 100001), 
+('037873449367', '2011-05-26', '2039-02-26','001211226765', 100002),
+('037873449999', '2011-06-26', '2039-03-26','001211226765', 100002),
+('044883449999', '2015-07-20', '2039-03-26','004411221212', 100004);
+\end{minted}
+
+\textbf{Result:}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 1]{Picture/BankCardData.png}
+    \caption{BankCard Data.}
+\end{figure}
+
+\subsection{CreditCard Relation:}
+\begin{minted}[ bgcolor=yellow!10]{mysql}
+insert into CreditCard values ('037873449999', 500000, '134', 4);
+select * from CreditCard;
+\end{minted}
+
+\textbf{Result:}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 1]{Picture/CreditCardData.png}
+    \caption{CreditCard Data.}
+\end{figure}
+
+\subsection{DebitCard Relation:}
+\begin{minted}[ bgcolor=yellow!10]{mysql}
+insert into DebitCard values('037828224631', '5051', 2900000), 
+('037144963539', '1590', 2600000), 
+('037873449367', '1357', 4400000),
+('044883449999', '1520', 10600000);     
+select * from DebitCard;
+\end{minted}
+
+\textbf{Result:}
+\begin{figure}[H]
+    \centering
+    \includegraphics[]{Picture/DebitCardData.png}
+    \caption{DebitCard Data.}
+\end{figure}
+
+\subsection{CardTransaction Relation:}
+\begin{minted}[ bgcolor=yellow!10]{mysql}
+insert into CardTransaction values(1, 100000, '044883449999', 
+'2002-04-12', 'ATM', '037828224631', 'CT'), 
+(1, 200000, '044883449999', '2003-02-12', 'ATM', '037144963539', 'CT'),
+(1, 300000, '044883449999', '2004-04-12', 'ATM', '037873449367', 'CT'),
+(1, 200000, null, '2004-04-12', 'ATM', '037873449999', 'RT'),
+(2, 300000, null, '2004-04-12', 'ATM', '037873449999', 'RT');
+select * from CardTransaction;
+\end{minted}
+
+\textbf{Result:}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=5.5in,height=1in]{Picture/CardTransactionData.png}
+    \caption{CardTransaction Data.}
+\end{figure}
+
+\subsection{OnlAccTransaction Relation:}
+\begin{minted}[ bgcolor=yellow!10]{mysql}
+insert into OnlAccTransaction values (1, 5000000, null, 
+'2002-04-12', 'Viettin', '001221051555', 'NT'), 
+(2, 1000000, '004411221212', '2002-04-12', 'Viettin', 
+'001221051555', 'CT'), 
+(1, 5000000, null, '2002-04-12', 'OCB', '000820005493', 'NT'), 
+(2, 200000, '004411221212', '2003-02-12', 'OCB', 
+'000820005493', 'CT'), 
+(1, 10000000, null, '2002-04-12', 'OCB', '001211226765', 'NT'), 
+(2, 3000000, '004411221212', '2004-04-12', 'OCB', 
+'001211226765', 'CT'),
+(1, 1000000, null, '2004-03-12', 'OCB', '004411221212', 'NT');
+select * from OnlAccTransaction;
+\end{minted}
+
+\textbf{Result:}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=5.5in,height=1in]{Picture/OnlAccTransactionData.png}
+    \caption{OnlAccTransaction Data.}
+\end{figure}
+
+\subsection{OffAccTransaction Relation:}
+\begin{minted}[ bgcolor=yellow!10]{mysql}
+insert into OffAccTransaction values(1, 10000000, '004411221212', 
+'2002-04-12', 'Scranton Whitepages', '001221051555', '200000', 'CT'), 
+(1, 2000000, '004411221212', '2003-02-12', 'Scranton Whitepages', 
+'000820005493', '200001', 'CT'), 
+(1, 3000000, '004411221212', '2004-04-12', 'Scranton Whitepages', 
+'001211226765', '200002', 'CT');
+select * from OffAccTransaction;
+\end{minted}
+
+\textbf{Result:}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=5.5in,height=1in]{Picture/OffAccTransactionData.png}
+    \caption{OffAccTransaction Data.}
+\end{figure}
+
+\section{The normal form (NF) and solutions for improving the NF}
+In this section, we will briefly review theory of dependency and Normal Form first. After that, we will analyze dependency and Normal Form of our database.
+\subsection{Informal Design Guidelines for Relation Schemas}
+\begin{itemize}
+    \item Making sure that the semantics of the attributes is clear in the schema:
+    \begin{itemize}
+        \item Design a relation schema so that it is easy to explain its meaning.
+        \item Do not combine attributes from multiple entity types and relationship types into a single relation.
+    \end{itemize}
+    \item Avoiding update anomalies such as modification, deletion, insertion anomalies which cause redundant work to be done and may lead to accidental loss of information.
+    \item Reducing the NULL values in tuples as well as redundant information in tuples in order to minimize the storage space.  
+    \item Disallowing the possibility of generating invalid and spurious tuples, which means that we should design relation schemas so that relations can be joined with equality conditions on attributes.
+\end{itemize}
+
+\subsection{The Normal Form}
+\subsubsection{Functional Dependency}
+\indent Functional Dependency (FD) is a constraint that determines the relation of one attribute to another attribute in a Database Management System (DBMS). Functional Dependency helps to maintain the quality of data in the database, and denoted by an arrow “→”. \\\\
+\indent To understand more about FD, take a look at example below:
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=6in,height1.5in]{Picture/FD.png}
+    \caption{Example about functional dependecy.}
+\end{figure}
+
+\indent In this example, if we know the value of Employee number, we can obtain Employee Name, city, salary, etc. By this, we can say that the city, Employee Name, and salary are functionally depended on Employee number.
+\subsubsection{Definition of the Normal Form}
+\indent Having introduced functional dependencies, we can use them to develop a formal methodology for testing and improving relation schemas, let continue with normalization process for our relational schema design. \\\\
+\indent There are two approaches often used for relational design projects:
+\begin{itemize}
+    \item Performing a conceptual schema design using a conceptual model such as ER or EER and map the conceptual design into a set of relations.
+    \item Designing the relations based on external knowledge derived from an existing implementation of files or forms or reports.
+\end{itemize}
+
+\indent These approaches are useful evaluate for the goodness and decompose relations and need to achieve higher normal forms.
+
+\subsubsection{First Normal Form(1NF)}
+\begin{itemize}
+    \item The first normal form states that:
+        \begin{enumerate}
+            \item There is only one value at the intersection of each row and column of a relation - no set valued attributes in 1NF.
+            Disallows composite attributes, multivalued attributes, and \textbf{nested relations}.
+            \item To be part of the formal definition of a relation in the basic (flat) relational model.
+            \item The only attribute values permitted by 1NF are single
+            \textbf{atomic} (or \textbf{indivisible) values}.
+        \end{enumerate}
+    
+        
+ \end{itemize}
+ 
+ \subsubsection{Second Normal Form(2NF)}
+ \begin{itemize}
+    \item The second normal form states that:
+        \begin{enumerate}
+            \item Satisfying first normal form.
+            \item All attributes must be fully functionally dependent on the primary key.
+            \item Don't violate partial dependency problem.
+        \end{enumerate}
+    \item \textbf{Definition.} A relation schema R is in 2NF if every nonprime attribute A in R is fully functionally dependent on the primary key of R.
+ \end{itemize}
+ 
+ \subsubsection{Third Normal Form(3NF)}
+ \begin{itemize}
+    \item The third normal form states that:
+        \begin{enumerate}
+            \item Satisfying second normal form.
+            \item No non-prime attribute in a relation is transitively dependent on the primary key.
+        \end{enumerate}
+    \item \textbf{Definition.} A relation schema R is in third normal form (3NF) if, whenever a nontrivial functional dependency X → A holds in R, either (a) X is a superkey of R, or (b) A is a prime attribute of R.
+ \end{itemize}
+ 
+ \subsubsection{Boyce-Codd normal form(BCNF)}
+ \begin{itemize}
+    \item Boyce-Codd normal form states that:
+        \begin{enumerate}
+            \item Satisfying third normal form.
+            \item A relation R is in Boyce-Codd Normal Form (BCNF) if whenever an functional dependence A -> B holds in R, then B is a superkey of R.
+        \end{enumerate}
+    \item \textbf{Definition.} A relation schema R is in BCNF if whenever a nontrivial functional dependency X → A holds in R, then X is a superkey of R.
+    \item Every relation in BCNF is also in 3NF; however, a relation in 3NF is not necessarily in BCNF.
+ \end{itemize}
+ 
+ \subsubsection{Fourth Normal Form}
+ \begin{itemize}
+     \item The fourth normal form must obey the following point:
+     \begin{enumerate}
+            \item It should be in the Boyce-Codd Normal Form (BCNF).
+            \item In addition to a database meeting the requirements of BCNF, it must not contain more than one multivalued dependency.
+     \end{enumerate}
+     \item If a table violates the normalization standard of Fourth Normal Form, it creates unnecessary redundancies and can contribute to inconsistent data. To solve this problem, it is neccessary to break this information into two table.
+ \end{itemize}
+ 
+  \subsubsection{Fifth Normal Form}
+ \begin{itemize}
+     \item A relation R is in 5NF if and only if it satisfies following conditions
+     \begin{enumerate}
+            \item It should be in should be already in 4NF (4NF).
+            \item It cannot be further non loss decomposed (join dependency).
+     \end{enumerate}
+     \item However, such a dependency is very difficult to detect in practice and therefore, normalization into 5NF is considered very rarely in practice.
+ \end{itemize}
+ 
+ \subsection{Normal form of our relations}
+ \subsubsection{Dependencies}
+  \begin{itemize}
+     \item \textbf{Customer Relation}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[]{Picture/CustomerRelation.png}
+            \caption{Customer Relation}
+        \end{figure}
+     C\_ID $\longrightarrow$ \{CName, Age, Email, Phone, Address\}\\
+     
+     \item \textbf{BankStaff Relation}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[]{Picture/BankStaffRelation.png}
+            \caption{BankStaff Relation}
+        \end{figure}
+     S\_ID $\longrightarrow$ \{SName, Age, Email, Phone, Address, StartDate, WLoc\}\\
+     
+      \item \textbf{BankAccount Relation}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[]{Picture/BankAccountRelation.png}
+            \caption{BankAccount Relation}
+        \end{figure}
+     AccNum $\longrightarrow$ \{CreateDate, InterestRate, Type, C\_ID, Balance\}\\
+     
+     \item \textbf{BankCard Relation}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[]{Picture/BankCardRelation.png}
+            \caption{BankCard Relation}
+        \end{figure}
+     CardNum $\longrightarrow$ \{StartDate, ExpDate, AccNum, C\_ID\}\\
+     
+     \item \textbf{CreditCard Relation}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[]{Picture/CreditCardRelation.png}
+            \caption{CreditCard Relation}
+        \end{figure}
+     CardNum $\longrightarrow$ \{WithdrawnAmount, SecCode, InterestRate\}\\
+     
+     \item \textbf{DebitCard Relation}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[]{Picture/DebitCardRelation.png}
+            \caption{DebitCard Relation}
+        \end{figure}
+     CardNum $\longrightarrow$ \{Balance, PINCode\}\\
+     
+     \item \textbf{CardTransaction Relation}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[]{Picture/CardTransactionRelation.png}
+            \caption{CardTransaction Relation}
+        \end{figure}
+     \{T\_no, CardNum\} $\longrightarrow$ \{Money, Dest, T\_Date, PaymentMachine, TrType\}\\
+     
+     \item \textbf{OnlAccTransaction Relation}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[]{Picture/OnlAccTransactionRelation.png}
+            \caption{OnlAccTransaction Relation}
+        \end{figure}
+     \{T\_no, CardNum\} $\longrightarrow$ \{Money, Dest, T\_Date, App, TrType\}\\
+     
+     \item \textbf{OffAccTransaction Relation}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[]{Picture/OffAccTransactionRelation.png}
+            \caption{OffAccTransaction Relation}
+        \end{figure}
+     \{T\_no, CardNum\} $\longrightarrow$ \{Money, Dest, T\_Date, T\_Loc, S\_ID, TrType\}\\
+ \end{itemize}
+ 
+  \subsubsection{First Normal Form}
+  All of our relation have all attribute containing atomic value and there is no nested relation. Therefore, all of our database's relations are in 1NF
+  
+  \subsubsection{Second Normal Form}
+  From all dependencies listed from our relations, non-prime attributes are fully functionally dependent on the primary keys of its relation. Therefore we can conclude that our database's relations are in 2NF
+  
+  \subsubsection{Third Normal Form}
+  Consider dependencies listed from our relations, all attribute are dependent on superkey of its relation. Therefore we can conclude that our database's relations are in 3NF
+  
+  \subsubsection{Boyce-Codd Normal Form}
+  Finally, among all dependencies, superkey is attributes that determine other attribute and the attributes that is dependent on superkey are not prime attribute, which satisfy the condition in definition of BCNF.
+ 
+ \subsubsection{Normal Form Conclusion}
+ Our database's relation satisfy Boyce-Codd Normal Form.
+ We did not modify the original relational databse. Therefore, we can conclude that we minimized redundancy and the insertion, deletion, and update anomalies of our database.
+ 
+ \section{Database security and Solution}
+ \subsection{Definition of database security}
+ \indent Database security is the technique that protects and secures the database against intentional or accidental threats. \\\\
+ \indent Type of security related to this area, for example:
+ \begin{itemize}
+     \item Regarding the right to access certain ethical and legal information - ex. Limit access of data or prevent inappropriate access to all or part of unauthorized organizations or persons.
+     \item The kind of information should not be made publicly available about policy issues at the governmental, institutional, or corporate level (credit rating or personal medical record).
+     \item The need in some organizations to identify multiple security levels and to categorize the data and users based on these classifications.
+ \end{itemize}
+ 
+ \indent Database security refers to the range of tools, 
+ controls, and measures designed to establish and preserve 
+ database confidentiality, integrity, and availability which 
+ are all threads thread to databases.\\\\
+ \indent To protect database against from the confidentiality, integrity, and availability threads. Implementing four kind of control measures is neccessary 
+ that is \textbf{Access control}, \textbf{Inference control}, \textbf{Flow control}, \textbf{Data encryption}.
+ 
+ \begin{enumerate}
+     \item Access control is handled by creating user accounts
+and passwords to control the login process by the DBMS. The user must log in to the DBMS by entering the account number and password whenever database access is needed.
+    \item Statistical databases are used to provide statistical information or summaries of values based on various criteria (ex. age groups, income levels
+    education levels of population statistics). Security for this databases must ensure that information about individuals cannot be accessed. Thus, the corresponding control measures are called inference control measures.
+    \item Flow control prevents information from
+flowing in such a way that it reaches unauthorized users.
+    \item Data encryption is used to protect sensitive data
+(such as credit or debit card numbers, account number) that is transmitted via some type of communications
+network. Because the data is encoded using coding algorithm, therefore encryption can be used to provide additional protection for sensitive portions of a database.
+ \end{enumerate}
+ 
+ \subsection{Demonstration and Solution for Bank\_Transaction database}
+ 
+ \begin{itemize}
+    \item Firstly, we create three accounts, namely \textbf{A1, A2, A3}.
+    \begin{minted}[bgcolor=yellow!10]{mysql}
+create user 'A1'@'localhost','A2'@'localhost',
+'A3'@'localhost';
+    \end{minted}
+    \item And we wants to grant \textbf{A1} the privilege
+to insert and delete tuples in both of relations \textbf{BankStaff} and \textbf{Customer}, but we does not want \textbf{A1} to be able to propagate these privileges to additional accounts, so we use the following codes:
+    \begin{minted}[bgcolor=yellow!10]{mysql}
+grant select, delete on Customer to 'A1'@'localhost';
+grant select, delete on BankStaff to 'A1'@'localhost';
+    \end{minted}
+    \item Suppose that we wants to allow \textbf{A2} to retrieve information from either of the two tables and also to be able to propagate the \textbf{SELECT} privilege to other accounts so we use the following codes:
+    \begin{minted}[bgcolor=yellow!10]{mysql}
+grant select on Customer to 'A2'@'localhost' 
+with grant option;
+grant select on BankStaff to 'A2'@'localhost' 
+with grant option;
+    \end{minted}
+    \item User \textbf{A2} can grant the \textbf{SELECT} privilege on the \textbf{Customer} and \textbf{BankStaff} relations to \textbf{A3} by issuing:
+    \begin{minted}[bgcolor=yellow!10]{mysql}
+use bank_transaction;
+grant select on Customer to 'A3'@'localhost';
+grant select on BankStaff to 'A3'@'localhost'; 
+    \end{minted}
+    \item To check all privileges of user \textbf{A3}, we conduct the following codes:
+    
+    \begin{minted}[bgcolor=yellow!10]{mysql}
+show grants;    
+    \end{minted}
+    
+    \begin{figure}[H]
+            \centering
+            \includegraphics[width=5in,height=0.75in]{Picture/security2.png}
+            \caption{Privileges of user \textbf{A3}.}
+    \end{figure}
+    
+    \item Now to revoke \textbf{SELECT} privilege of user \textbf{A2} on Customer's table, we can issue:
+    \begin{minted}[bgcolor=yellow!10]{mysql}
+revoke select on Customer from 'A2'@'localhost';
+    \end{minted}
+ \end{itemize}
+ \section{Tuning and Manipulating Bank\_Transaction database}
+ \subsection{Retrieve data from our database}
+ 
+ \indent \textbf{1.} Find information (T\_No, T\_Date, Money, AccNum, TrType) about the 10 most recent online transaction of Customer whose ID is 100000
+ 
+ \begin{minted}[bgcolor=yellow!10]{mysql}
+select 
+    C.CName as 'Customer Name',
+    OT.T_Date as 'Day', 
+    OT.T_No as 'Transaction Number', 
+    OT.Money as 'Amount', 
+    OT.AccNum as 'Account Number', 
+    OT.TrType as 'Type'
+from OnlAccTransaction as OT, Customer as C 
+where C.C_ID = '100000' 
+and OT.AccNum = (select AccNum from BankAccount where C_ID = '100000')
+order by T_Date desc limit 10;
+ \end{minted}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=5.5in,height=1.5in]{Picture/data1.png}
+        \caption{Result of 3 most recent onl-transaction.}
+    \end{figure}
+
+\indent \textbf{2.} Find the online transaction history of all customer and classify their amount of money involve into deposit or transfer column base on the transaction type.
+
+ \begin{minted}[bgcolor=yellow!10]{mysql}
+select 
+	C.CName as 'Customer Name',
+	OT.T_No, OT.T_Date, 
+case when OT.TrType = 'CT' then Money end as Deposit,
+case when OT.TrType = 'NT' then Money end as Transfer
+from OnlAccTransaction as OT, Customer as C, BankAccount as AC
+where OT.AccNum = AC.AccNum and C.C_ID = AC.C_ID
+order by C.CName desc;
+ \end{minted}
+ 
+ \begin{figure}[H]
+        \centering
+        \includegraphics[width=5in,height=1.5in]{Picture/data2.png}
+        \caption{Customer's money when charging or withdrawing.}
+\end{figure}
+
+\indent \textbf{3.} Find name of bank staffs who are responsible for accounts having created date <= 2011-08-01.
+\begin{minted}[bgcolor=yellow!10]{mysql}
+select BS.SName
+from BankStaff as BS, 
+     OffAccTransaction as O, 
+     BankAccount as BA
+where O.S_ID = BS.S_ID 
+and   O.AccNum = BA.AccNum 
+and   BA.CreateDate <= '2011-08-01';
+ \end{minted}
+ 
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=5in,height=1in]{Picture/data3.png}
+        \caption{Staff's name for query \textbf{3}.}
+    \end{figure}
+
+\subsection{Trigger \& Stored Procedure}
+\indent In this section, our team creates two trigger to validate data even before they are inserted or updated:\\\\
+\subsubsection{Trigger for Online Transaction:}
+Our flow is to check if the account have enough money to transfer before transaction (We do not check if the transaction is deposit). After insertion, we will change the balance of the Bank Account and its relating Debit Cards to make sure that the Balance is up-to-date and consistence
+
+Trigger for Online Transaction to make sure that they have enough money to transfer money
+
+\begin{minted}[bgcolor=yellow!10]{mysql}
+drop trigger if exists check_balance_CT;
+delimiter //
+create trigger check_balance_CT 
+before insert on OnlAccTransaction
+for each row 
+begin 
+if new.TrType = 'CT' 
+and new.Money > (select Balance from BankAccount where AccNum = new.AccNum) 
+then signal sqlstate '45000' 
+set message_text = 'Not enough Money';
+	end if;
+end //
+delimiter ;
+\end{minted}
+
+And we test with the following insertion:
+Based on the trigger the insertion cannot be done since the account does not have enough balance to transfer
+\begin{minted}[bgcolor=yellow!10]{mysql}
+insert into OnlAccTransaction values (3, 50000000, null, '2002-04-12',
+'Viettin', '001221051555', 'CT');
+\end{minted}
+
+\textbf{Result:}
+ \begin{figure}[H]
+        \centering
+        \includegraphics[width=5in,height=1.5in]{Picture/Trigger1Result.png}
+        \caption{Error return from trigger 1.}
+\end{figure}
+
+Then we add trigger after insertion to make things up-to-date and consistent. 'CT' means you transfer your money to another account and 'NT' means you deposit amount of money to your account
+
+\begin{minted}[bgcolor=yellow!10]{mysql}
+delimiter //
+create trigger Onl_Transaction_After 
+after insert on OnlAccTransaction
+for each row 
+begin 
+if new.TrType = 'CT' then
+-- Minus the balance of sender
+	update BankAccount as A
+	set A.balance = A.balance - new.Money 
+    where A.AccNum = new.AccNum;
+-- Add the balance of receiver  
+    update BankAccount as A
+	set A.balance = A.balance + new.Money 
+    where A.AccNum = new.Dest;
+-- Make Debit Card consistent
+    update DebitCard as DC, BankCard as BC
+	set DC.balance = DC.balance - new.Money 
+    where BC.AccNum = new.AccNum and DC.CardNum = BC.CardNum;
+    update DebitCard as DC, BankCard as BC
+	set DC.balance = DC.balance + new.Money 
+    where BC.AccNum = new.Dest and DC.CardNum = BC.CardNum;
+end if;
+if new.TrType = 'NT' then
+-- Add the balance of sender
+	update BankAccount as A
+	set A.balance = A.balance + new.Money 
+    where A.AccNum = new.AccNum;
+-- Make Debit Card consistent
+    update DebitCard as DC, BankCard as BC
+	set DC.balance = DC.balance + new.Money 
+    where BC.AccNum = new.AccNum and DC.CardNum = BC.CardNum;
+end if;
+end //
+delimiter ;
+\end{minted}
+\newpage
+We test with the following context:
+\begin{itemize}
+    \item Account 001221051555 transfer 50000 to account 004411221212
+    \item Account 000820005493 deposits 500000
+\end{itemize}
+
+
+\begin{minted}[bgcolor=yellow!10]{mysql}
+insert into OnlAccTransaction values (3, 50000, '004411221212',
+'2002-04-12', 'Viettin', '001221051555', 'CT');
+insert into OnlAccTransaction values (3, 500000, null, '2002-04-12',
+'Viettin', '000820005493', 'NT');
+select * from OnlAccTransaction;
+select * from BankAccount;
+select * from DebitCard
+\end{minted}
+
+\textbf{Result:}\\
+Before:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=5.5in,height=1.5in]{Picture/BankAccountData.png}
+    \caption{Initial Bank Account Data}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[]{Picture/DebitCardData.png}
+    \caption{Initial Debit Card Data}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=5.5in,height=1.5in]{Picture/OnlAccTransactionData.png}
+    \caption{Initial Online Account Transaction Data}
+\end{figure}
+
+After:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=5.5in,height=1.5in]{Picture/AfterAccount.png}
+    \caption{Updated Bank Account Data}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[]{Picture/AfterDebitCard.png}
+    \caption{Updated Debit Card Data}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=5.5in,height=1.5in]{Picture/AfterOnlTrans.png}
+    \caption{Updated Online Transaction Data}
+\end{figure}
+
+\textbf{Result Explanation: }
+In the after results, we add blue bounding box for the change made by deposit transaction and the red one for the change made by transfer money transaction. As you can see, the amount of money in deposit transaction is 500000 and the balance of both is added 500000 to be 3100000 and both balance value is consistent too. Similar things happen with the transfer money transaction.
+
+
+\subsubsection{Trigger & procedure for adding staff:}
+\indent \textbf{1.} Trigger for Customer to detect whether age is less than 0.
+\begin{minted}[bgcolor=yellow!10]{mysql}
+create table message 
+(messageID      int         not null,
+ message        varchar(100),
+ primary key (messageID));
+\end{minted}
+
+\indent \textbf{message} table will annouce when inserting a customer's age < 0 and need to update. Therefore, trigger should like this:
+\begin{minted}[bgcolor=yellow!10]{mysql}
+delimiter //
+create trigger check_age_email before insert on Customer
+for each row 
+begin 
+if new.Age < 0 then insert into message (messageID, message)
+values (new.C_ID, concat('Please update Age of ', new.CName,
+'\'s customer'));
+end if;
+if new.Email not regexp '^[A-Z0-9][A-Z0-9.]*@[A-Z0-9][A-Z0-9.]*
+\.[A-Z]{2,4}' 
+then insert into message (messageID, message)
+values (new.C_ID, concat('Please update Email of ', 
+new.CName,'\'s customer'));
+end if;
+end //
+delimiter ;
+\end{minted}
+\indent Let check whether our trigger is still working
+\begin{minted}[bgcolor=yellow!10]{mysql}
+insert into Customer values (100004, 'Keigh', -1, 
+'keigh@gmail.com', '0923451131', '731 Fondren, Houston,TX');
+select * from message;
+\end{minted}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=5in,height=0.75in]{Picture/data4.png}
+    \caption{Trigger before inserting}
+\end{figure}
+
+\indent You can drop this trigger if you want.
+\begin{minted}[bgcolor=yellow!10]{mysql}
+drop trigger if exists check_age_email;
+\end{minted}
+
+\textbf{Procedure:}\\\\
+\indent \textbf{Note that} in trigger above, it's not prevent new value from inserting into Customer's table. 
+Now we will create another trigger and procedure for BankStaff's table in order to check Age of staffs who must be greater than 18 years old and valid emails for them. The insertion will not be allowed unless it meet the requirements.
+\begin{minted}[bgcolor=yellow!10]{mysql}
+delimiter //
+create procedure validate_staff(
+    in age int,
+    in email varchar(45)
+)
+begin
+    if age <= 18 then signal sqlstate '45000' 
+set message_text = 'Age must be greater than 18';
+    end if;
+    if not (select email regexp '^[A-Z0-9]
+    [A-Z0-9.]*@[A-Z0-9][A-Z0-9.]*\.[A-Z]{2,4}') then
+signal sqlstate '45000' set message_text = 'Wrong email';
+    end if;
+end//
+delimiter ;
+
+delimiter //
+create trigger validate_staff_insert
+before insert on BankStaff for each row
+begin
+    call validate_staff(new.Age, new.Email);
+end//
+delimiter ;
+\end{minted}
+
+\indent Let check whether our procedure and trigger are still working.
+\begin{minted}[bgcolor=yellow!10]{mysql}
+insert into BankStaff values ('200021', 'Mile', 1, 
+'Mile@gmail.com', '0987123621', '12 Rice, Houston, TX', 
+'1977-07-15', 'John Daly Law, LLC');
+insert into BankStaff values ('200022', 'Mile', 19, 'Mile@.vn',
+'0987123621', '12 Rice, Houston, TX', '1977-07-15',
+'John Daly Law, LLC');
+\end{minted}
+\indent Here is the result of that procedure.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=5in,height=4in]{Picture/data.png}
+    \caption{Error when inserting staff member.}
+\end{figure}
+\subsection{Indexing}
+\subsubsection{Advantages of using indexes}
+\indent Indexes are used to find rows with specific column values quickly. Without an index, MySQL must begin with the first row and then read through the entire table to find the relevant rows. The larger the table, the more this costs. If the table has an index for the columns in question, MySQL can quickly determine the position to seek to in the middle of the data file without having to look at all the data.
+\subsubsection{Demonstration for using indexes in Bank\_Transaction database}
+\begin{itemize}
+    \item Firstly, we create index, namely cus\_index on Age attribute of Customer's table and use the following code:
+    \begin{minted}[bgcolor=yellow!10]{mysql}
+create index cus_index on Customer(Age);
+    \end{minted}
+    \item Then we check how fast it is when using index and \textbf{EXPLAIN} clause to find customers who are greater than 30 years old:
+    \begin{minted}[bgcolor=yellow!10]{mysql}
+explain select C_ID from Customer where Age > 30; 
+    \end{minted}
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=5.7in,height=0.5in]{Picture/index1.png}
+        \caption{The result of using cus\_index.}
+    \end{figure}
+    \item Now we drop this index and use \textbf{EXPLAIN} clause again to compare the fast without using index.
+    \begin{minted}[bgcolor=yellow!10]{mysql}
+drop index cus_index on Customer;
+explain select C_ID from Customer where Age > 30; 
+    \end{minted}
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=5.5in,height=0.45in]{Picture/index2.png}
+        \caption{The result of without using cus\_index.}
+    \end{figure}
+    \item As you can see from the \textbf{figure 23}, there are no index used by DBMS to find the Age attribute and there are 2 filtered rows. In the contrast, in the \textbf{figure 22} there is only 1 filtered row. Because we only inserted a little bit data to our database so we don't see the differences between them. If there are lots of data in relations, then using indexes is always better than without using them.
+\end{itemize}
+
+\newpage
+\section{An application for our Bank\_Transaction database}
+\indent Firstly, we create a GUI(graphical user interface) and connect it to Mysql in Java (Netbeans) and using \textbf{mysql-connector-java} like this.\\\\
+
+ \begin{figure}[H]
+        \centering
+        \includegraphics[width=6in,height=6in]{Picture/app1.png}
+        \caption{GUI for application.}
+\end{figure}
+
+\indent Next, let move on to file in menu bar, there are three table to tackle data that is \textbf{Customer}, \textbf{BankCard}, \textbf{Account} residing in \textbf{file}. Begin with \textbf{Customer}
+ \begin{figure}[H]
+        \centering
+        \includegraphics[width=5.5in,height=5in]{Picture/app2.png}
+        \caption{Customer interface.}
+    \end{figure}
+
+\newpage
+\indent Now, let insert one value to our database.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=5.5in,height=5in]{Picture/insertCus1.png}
+        \caption{Inserting data to Customer's table.}
+    \end{figure}
+\indent It's said that \textbf{Adding successfully!!!}
+
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=5.5in,height=0.5in]{Picture/resultInserting.png}
+        \caption{Data in Customer's table.}
+    \end{figure}
+\newpage
+\indent Continue to \textbf{Account} interface(
+abbreviate for BankAccount). When inserting data into \textbf{BankAccount}, result look like this.
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=5.5in,height=5in]{Picture/insertAcc.png}
+        \caption{Inserting data to BankAccount's table.}
+    \end{figure}
+
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=5.5in,height=0.5in]{Picture/resultInserting1.png}
+        \caption{Data in BankAccount's table.}
+    \end{figure}
+\indent You can also find data with \textbf{Find} button just typing Customer ID and the result will show similar with figure 28. 
+\newpage
+\indent And for BankCard interface which shows the same result.
+
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=5.5in,height=5in]{Picture/insertCard.png}
+        \caption{Inserting data to BankCard's table.}
+    \end{figure}
+
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=5.5in,height=0.5in]{Picture/resultInserting2.png}
+        \caption{Data in BankCard's table.}
+    \end{figure}
+\newpage
+\indent Now, go to transact money in \textbf{Transaction} menu.
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=5.5in,height=5in]{Picture/findAccNum.png}
+        \caption{Finding Account Number.}
+    \end{figure}
+\newpage
+\indent Let's enter money in deposit field.
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=5.5in,height=5in]{Picture/deposit.png}
+        \caption{When entering \textbf{OK} button.}
+    \end{figure}
+\newpage
+\indent If you find this \textbf{Account Number} again, the result looks like this
+
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=5.5in,height=5in]{Picture/findagain.png}
+        \caption{Result when finding again.}
+    \end{figure}
+
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=4in,height=0.5in]{Picture/updateDb.png}
+        \caption{Data in DebitCard's table.}
+    \end{figure}
+\newpage
+    \indent Our application also help to transfer money between Account's number. Now, let see what's in \textbf{Transfer} interface.
+
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=5.5in,height=5in]{Picture/findAccNum1.png}
+        \caption{Finding Account Number 37144963539.}
+    \end{figure}
+\newpage
+\indent Now we want to transfer money to Account Number 37873449367 with amount 59999 transferred.
+
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=5.5in,height=5in]{Picture/transfer.png}
+        \caption{Transferring completely.}
+\end{figure}
+
+\indent It will update DebitCard's table in our database.
+
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=4in,height=0.5in]{Picture/resultTransfer.png}
+        \caption{Result of updating DebitCard's table.}
+\end{figure}
+\indent So, that is all for our application. And here is reference for demonstration.
+\href{https://drive.google.com/file/d/1-c-ld9rg3d1Jr9wX7pFM0SyzRZ1Sm9qZ/view?usp=sharing}{Demonstration for our application}\\\\
+\indent 
+
+\section{Conclusion for assignment 2: }
+Firstly, we completed insertion initial data to the DBMS, we tried to make it consistent. The data will then be used for query. Secondly, we discussed about Normal Form and Functional Dependency. Following with its theory, we analyze our database based on that and we concluded that all relations in Bank Transaction database is in Boy-Codd Normal Form.
+In the next part, we discuss about security including access control, interface control, flow control, data encryption. We also have a demonstration about security on granting privilege. 
+
+The most interesting section to us is the two next sections. The first one is about tuning data. We do querying data, creating trigger and procedure for relations in our database. Trigger is very important in our database because it make our database consistent. We have demonstrated triggers for making insertion of online account transaction consistent and one for validate staff insertion. Further work is still need to make our whole database consistent. For other transaction relations, the step will be similar to the Online Transaction. The next one is about create a top application for our database. Although it is not totally completed, it provided basic functions for user to work with our database. Moreover, the application will be updated in the near future to make it work better with more functions.
+
+\section{References}
+\begin{itemize}
+\item \href{https://www.youtube.com/watch?v=JRN8I9C7XbE&list=PLuji25yj7oIJ5JU
+NOtgMZQJNWEBew7Tdo&index=10}{https://www.youtube.com/watch?v=JRN8I9C7XbE}
+    \item \textcolor{cyan}{Ramez, Elmasri, Shamkant, B.Navathe-Fundamentals of Database Systems Pearson 2015.}
+    \item \href{https://github.com/kietcaoc3a/bank_transaction/tree/main/bank_transaction/src/main/java/com/mycompany/bank_transaction}{Here is our source code in github}
+    \item \href{https://dev.mysql.com/doc/refman/8.0/en/regexp.html}{https://dev.mysql.com/doc/refman/8.0/en/regexp.html}
+    \item \href{https://dev.mysql.com/doc/refman/8.0/en/create-procedure.html}{https://dev.mysql.com/doc/refman/8.0/en/create-procedure.html}
+    \item \href{https://dev.mysql.com/doc/index-enterprise.html}{https://dev.mysql.com/doc/index-enterprise.html}
+    \item \href{https://dev.mysql.com/doc/refman/8.0/en/mysql-indexes.html}{https://dev.mysql.com/doc/refman/8.0/en/mysql-indexes.html}
+\end{itemize}
+    \textcolor{dfdf}{}
+\end{document}
+
+
